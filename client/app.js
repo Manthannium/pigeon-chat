@@ -1,6 +1,6 @@
 // ==================== Configs ====================
 
-const PRODUCTION_SERVER_URL = "https://pigeon-chat.onrender.com";
+const PRODUCTION_SERVER_URL = "https://pigeon-chat-server.onrender.com";
 const SERVER_URL = location.port === "3000" ? location.origin : PRODUCTION_SERVER_URL;
 const socket = io(SERVER_URL);
 const store = sessionStorage; // sessionStorage survives refresh and is separate per tab, localStorage survives closing the browser

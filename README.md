@@ -5,6 +5,10 @@ npm run dev
 ```
 open http://localhost:3000 in browser
 
+# Deployments
+- Backend on Render - https://pigeon-chat-server.onrender.com
+- Frontend on Vercel - 
+
 # Project structure
 ```
 ├── client
