@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pigeon Chat</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; }
+        .hidden { display: none !important; }
+
+        /* Lobby */
+        #lobby { max-width: 300px; margin: 80px auto; display: flex; flex-direction: column; gap: 8px; }
+        #lobby .row { display: flex; gap: 8px; }
+        #lobby .row input { flex: 1; text-transform: uppercase; }
+        #error { color: red; min-height: 1em; margin: 0; }
+
+        /* Room */
+        #room { display: flex; flex-direction: column; height: 100vh; }
+        #room header { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc; }
+        #room-expiry { color: #888; }
+        #room main { flex: 1; display: flex; min-height: 0; }
+        #users { width: 160px; padding: 10px; border-right: 1px solid #ccc; overflow-y: auto; }
+        #users h3 { margin-top: 0; }
+        #user-list { padding-left: 18px; margin: 0; }
+        #chat { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+        #messages { flex: 1; list-style: none; margin: 0; padding: 10px; overflow-y: auto; }
+        #messages li { margin-bottom: 4px; overflow-wrap: anywhere; }
+        #messages .system { color: #888; font-style: italic; }
+        #message-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid #ccc; }
+        #message-input { flex: 1; }
+    </style>
+</head>
+<body>
+    <!-- Lobby -->
+    <section id="lobby">
+        <h2>Pigeon Chat</h2>
+        <input id="username" placeholder="Your name" maxlength="20" autofocus />
+        <button id="create-btn">Create Room</button>
+        <div class="row">
+            <input id="code-input" placeholder="Room code" maxlength="4" />
+            <button id="join-btn">Join Room</button>
+        </div>
+        <p id="error"></p>
+    </section>
+
+    <!-- Room -->
+    <section id="room" class="hidden">
+        <header>
+            <span>Room: <strong id="room-code"></strong> <small id="room-expiry"></small></span>
+            <button id="leave-btn">Leave</button>
+        </header>
+        <main>
+            <aside id="users">
+                <h3>Online</h3>
+                <ul id="user-list"></ul>
+            </aside>
+            <div id="chat">
+                <ul id="messages"></ul>
+                <form id="message-form">
+                    <input id="message-input" placeholder="Type a message..." maxlength="500" autocomplete="off" />
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </main>
+    </section>
+
+    <!-- Socket.IO client from the CDN (works locally and on Vercel). Keep the major version (4.x) the same as the server's. -->
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
